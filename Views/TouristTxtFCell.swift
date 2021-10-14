@@ -20,13 +20,13 @@ class TouristTxtFCell: UITableViewCell, UITextFieldDelegate {
         // Initialization code
         cellTxtF.delegate = self
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapEdit(sender:)))
-        self.addGestureRecognizer(tapGesture)
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapEdit(sender:)))
+//        self.addGestureRecognizer(tapGesture)
     }
 
-     @objc func tapEdit(sender: UITapGestureRecognizer) {
-            delegate?.myTableDelegate()
-        }
+//     @objc func tapEdit(sender: UITapGestureRecognizer) {
+//            delegate?.myTableDelegate()
+//        }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
