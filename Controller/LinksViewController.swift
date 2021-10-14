@@ -22,6 +22,7 @@ class LinksViewController: UIViewController,UITableViewDelegate, UITableViewData
     var phoneNumberTxtFiled : UITextField?
     @IBOutlet weak var navBarView: UIView!
     var txtView : UITextView?
+    var isApiRunning : Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -199,6 +200,12 @@ class LinksViewController: UIViewController,UITableViewDelegate, UITableViewData
     }
     
     func hitSubmitApi() -> Void {
+        if(self.isApiRunning)
+        {
+            return
+        }
+        AppDelegate.getAppDelegate().showActivityIndicatory(uiView: self.view)
+        self.isApiRunning = true
         let paramStr : String = "name=\(self.nameTxtField!.text!)&email=\(self.emailTxtField!.text!)&mobile=\(self.phoneNumberTxtFiled!.text!)&message=\(self.txtView!.text!)"
         let request : NSMutableURLRequest = RequestBuilder.clientURLRequestWithFormData(path: "\(AppConstants.shared.baseUrl)\(AppConstants.shared.SubmitContactForm)", params: paramStr)
         let serverConnector = ServerConnector()
@@ -210,7 +217,10 @@ class LinksViewController: UIViewController,UITableViewDelegate, UITableViewData
     }
     
     func initilizationHandler(status: Bool, data: NSDictionary?, error: NSString?) {
+        
         DispatchQueue.main.async {
+            AppDelegate.getAppDelegate().removeActivityIndicator()
+            self.isApiRunning = false
                 if(data != nil)
                 {
                     print(data!)

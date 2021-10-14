@@ -99,7 +99,10 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     }
 
     @objc private func keyboardWillHide(notification: NSNotification) {
-      
+        self.printPermitViewConstraint.constant = -300
+        UIView.animate(withDuration: 1.0) {
+            self.view.layoutIfNeeded()
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

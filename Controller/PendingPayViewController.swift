@@ -27,6 +27,7 @@ class PendingPayViewController: UIViewController,ViewControllerProtocol, UITable
     var pendingForeignClientArr : NSMutableArray = NSMutableArray()
     var totalAmount : Int = 0
     var sourceArr: NSArray? = []
+    var isApiRunning : Bool = false
     
     override func viewDidLoad() {
         self.title = "Pending Payment"
@@ -63,7 +64,12 @@ class PendingPayViewController: UIViewController,ViewControllerProtocol, UITable
         self.tblView.reloadData()
     }
     func callGetAgentList() -> Void {
-        
+        if(self.isApiRunning)
+        {
+            return
+        }
+        AppDelegate.getAppDelegate().showActivityIndicatory(uiView: self.view)
+        self.isApiRunning = true
         self.serverCallTracer = ApiTracer.GetAgentList
         let tempDict:[String: String] = [:]
         let request : NSMutableURLRequest = RequestBuilder.clientURLRequest(path: "\(AppConstants.shared.baseUrl)\(AppConstants.shared.GetAgentList)", params: tempDict as Dictionary)
@@ -78,6 +84,12 @@ class PendingPayViewController: UIViewController,ViewControllerProtocol, UITable
     
     func callGetAgentPendingAmount() -> Void {
 
+        if(self.isApiRunning)
+        {
+            return
+        }
+        AppDelegate.getAppDelegate().showActivityIndicatory(uiView: self.view)
+        self.isApiRunning = true
         self.serverCallTracer = ApiTracer.GetPendingAmount
         let paramStr : String = "agentName=\(self.selectedAgent.text!)"
         let request : NSMutableURLRequest = RequestBuilder.clientURLRequestWithFormData(path: "\(AppConstants.shared.baseUrl)\(AppConstants.shared.GetAgentPendingAmount)", params: paramStr)
@@ -90,8 +102,10 @@ class PendingPayViewController: UIViewController,ViewControllerProtocol, UITable
         
     }
     func initilizationHandler(status: Bool, data: NSDictionary?, error: NSString?) {
+        self.isApiRunning = false
         DispatchQueue.main.async {
             
+            AppDelegate.getAppDelegate().removeActivityIndicator()
             self.totalAmount = 0
             if(self.serverCallTracer == ApiTracer.GetAgentList)
             {

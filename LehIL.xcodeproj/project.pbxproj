@@ -70,6 +70,7 @@
 		3F738F472713A15300759869 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F738F2C2713A15200759869 /* info.png */; };
 		3F738F482713A15300759869 /* helpline_on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F738F2D2713A15200759869 /* helpline_on@3x.png */; };
 		3F738F492713A15300759869 /* faqs_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F738F2E2713A15200759869 /* faqs_on@2x.png */; };
+		3F93BE002716E335000BF3AB /* ClickToAddTouristCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F93BDFF2716E335000BF3AB /* ClickToAddTouristCell.swift */; };
 		58213F8426EE9C450062240E /* PendingPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58213F8326EE9C450062240E /* PendingPayViewController.swift */; };
 		58C60B8626EBE0B300F40A98 /* MarqueeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C60B8526EBE0B300F40A98 /* MarqueeLabel.swift */; };
 		7B3C772026F622D700BD547B /* YBTextPickerDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3C771726F622D700BD547B /* YBTextPickerDataModel.swift */; };
@@ -171,6 +172,7 @@
 		3F738F2C2713A15200759869 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		3F738F2D2713A15200759869 /* helpline_on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "helpline_on@3x.png"; sourceTree = "<group>"; };
 		3F738F2E2713A15200759869 /* faqs_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "faqs_on@2x.png"; sourceTree = "<group>"; };
+		3F93BDFF2716E335000BF3AB /* ClickToAddTouristCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickToAddTouristCell.swift; sourceTree = "<group>"; };
 		58213F8326EE9C450062240E /* PendingPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingPayViewController.swift; sourceTree = "<group>"; };
 		58C60B8526EBE0B300F40A98 /* MarqueeLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarqueeLabel.swift; sourceTree = "<group>"; };
 		7B3C771726F622D700BD547B /* YBTextPickerDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YBTextPickerDataModel.swift; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 				3F738EF72710320C00759869 /* HelplineCell.swift */,
 				3F738F002710AD7400759869 /* LinkTextViewCell.swift */,
 				3F738F022710C20700759869 /* LinkViewCell.swift */,
+				3F93BDFF2716E335000BF3AB /* ClickToAddTouristCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				3F738F032710C20700759869 /* LinkViewCell.swift in Sources */,
 				7B3C772326F622D700BD547B /* YBTextPicker.swift in Sources */,
 				7B3C772226F622D700BD547B /* YBTextPickerCell.swift in Sources */,
+				3F93BE002716E335000BF3AB /* ClickToAddTouristCell.swift in Sources */,
 				7B3C772026F622D700BD547B /* YBTextPickerDataModel.swift in Sources */,
 				3F738F0D2712509B00759869 /* TouristTxtFCell.swift in Sources */,
 				3F738EFD2710694200759869 /* HelplineModel.swift in Sources */,
@@ -823,16 +827,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E2QM53C59J;
+				DEVELOPMENT_TEAM = ZN554T4853;
 				INFOPLIST_FILE = LehIL/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mobiquel.LehIL;
+				PRODUCT_BUNDLE_IDENTIFIER = com.viejas.shariq;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -842,16 +846,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E2QM53C59J;
+				DEVELOPMENT_TEAM = ZN554T4853;
 				INFOPLIST_FILE = LehIL/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mobiquel.LehIL;
+				PRODUCT_BUNDLE_IDENTIFIER = com.viejas.shariq;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

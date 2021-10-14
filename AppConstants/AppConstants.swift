@@ -17,7 +17,7 @@ class AppConstants: NSObject {
     let printPermitUrl : String = "https://www.lahdclehpermit.in/app-download-permit?groupId="
     let errorOccured : String = "Some Error Occurred. Please try again."
     let appName : String = "Leh Permit"
-    let faqUrl : String = "https://www.lahdclehpermit.in/faq/"
+    let faqUrl : String = "https://www.lahdclehpermit.in/faq-app/"
     let greenColor : String = "#FF018786"
     let grayColor : String = "#D9D9D9"
     let blackColor : String = "#FF000000"

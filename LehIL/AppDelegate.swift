@@ -10,6 +10,7 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var tempView : UIView? = UIView()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UITabBar.appearance().barTintColor = .white
@@ -29,6 +30,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }
+    
+    func showActivityIndicatory(uiView: UIView) {
+        let activityInd: UIActivityIndicatorView = UIActivityIndicatorView()
+        tempView!.frame = CGRect(x: 0, y: 0, width: UIApplication.shared.windows[0].frame.size.width, height: UIApplication.shared.windows[0].frame.size.height)
+        tempView!.backgroundColor = .clear
+        activityInd.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityInd.center = tempView!.center
+        activityInd.hidesWhenStopped = true
+        activityInd.style = .medium
+        activityInd.startAnimating()
+        tempView!.addSubview(activityInd)
+        uiView.addSubview(tempView!)
+    }
+    
+    func removeActivityIndicator() -> Void {
+        tempView!.removeFromSuperview()
+    }
+    
+    class func getAppDelegate() -> AppDelegate
+    {
+        return UIApplication.shared.delegate! as! AppDelegate
     }
 
 }
