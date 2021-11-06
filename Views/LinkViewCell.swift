@@ -21,6 +21,7 @@ extension UIButton
 
 class LinkViewCell: UITableViewCell, UITextFieldDelegate {
 
+    @IBOutlet weak var pressReleaseBtn: UIButton!
     @IBOutlet weak var nameTxtF: UITextField!
     @IBOutlet weak var phoneNumberTxtF: UITextField!
     @IBOutlet weak var emailTxtF: UITextField!
@@ -47,6 +48,10 @@ class LinkViewCell: UITableViewCell, UITextFieldDelegate {
         self.rndLbl2.layer.cornerRadius = self.rndLbl2.frame.height / 2
         self.rndLbl2.layer.masksToBounds = false
         self.rndLbl2.clipsToBounds = true
+        
+        self.pressReleaseBtn.layer.cornerRadius = 2
+        self.pressReleaseBtn.layer.masksToBounds = false
+        self.pressReleaseBtn.clipsToBounds = true
         
         self.districtLehBtn.addShadowonButton()
         self.kargilBtn.addShadowonButton()

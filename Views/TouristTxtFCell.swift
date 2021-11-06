@@ -56,8 +56,8 @@ class TouristTxtFCell: UITableViewCell, UITextFieldDelegate {
         }
         if(textField.tag == 3)
         {
-            // age Text Field
-            let maxLength = 10
+            // mobile number Text Field
+            let maxLength = 15
                let currentString: NSString = (textField.text ?? "") as NSString
                let newString: NSString =
                    currentString.replacingCharacters(in: range, with: string) as NSString

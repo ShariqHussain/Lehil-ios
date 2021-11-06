@@ -25,6 +25,8 @@ class LinkTextViewCell: UITableViewCell, UITextViewDelegate {
        // self.txtView.clipsToBounds = true
         self.txtView.layer.borderColor = UIColor(hexString: "D1D1D6").cgColor 
         self.txtView.layer.borderWidth = 1.0
+        self.txtView.contentInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 12)
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
