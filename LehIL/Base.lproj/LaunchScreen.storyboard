@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,15 +14,87 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="top_banner_one.png" translatesAutoresizingMaskIntoConstraints="NO" id="Pgd-Kj-bXN">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="252"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="top_banner_three.png" translatesAutoresizingMaskIntoConstraints="NO" id="PYN-gU-mRU">
+                                <rect key="frame" x="0.0" y="530" width="390" height="314"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="top_banner_two.png" translatesAutoresizingMaskIntoConstraints="NO" id="Bch-8E-UJS">
+                                <rect key="frame" x="0.0" y="252" width="390" height="277"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leh District Tourist Management" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yDu-pA-czd">
+                                <rect key="frame" x="35.666666666666657" y="367" width="319" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="319" id="F43-zR-gG6"/>
+                                    <constraint firstAttribute="height" constant="31" id="vkO-Z7-VN0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="System" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4P-lf-fge">
+                                <rect key="frame" x="35.666666666666657" y="403" width="319" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="319" id="Tup-Yw-8XK"/>
+                                    <constraint firstAttribute="height" constant="29" id="mSa-tc-wrc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqV-5V-5mA">
+                                <rect key="frame" x="16" y="766" width="358" height="78"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="78" id="QVP-ea-nsE"/>
+                                </constraints>
+                                <string key="text">An initiative of Ladakh Autonomous Hill Development Council (LAHDC), District Administration Leh &amp; NIELIT Leh, Union Territory of Ladakh. Supported by ICICI Bank Limited</string>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="12.067000389099121"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="PYN-gU-mRU" firstAttribute="top" secondItem="Bch-8E-UJS" secondAttribute="bottom" constant="-1" id="52Y-kr-DMk"/>
+                            <constraint firstAttribute="bottom" secondItem="fqV-5V-5mA" secondAttribute="bottom" id="AZr-4X-T5R"/>
+                            <constraint firstItem="Bch-8E-UJS" firstAttribute="width" secondItem="PYN-gU-mRU" secondAttribute="width" id="F8C-Ae-UWS"/>
+                            <constraint firstAttribute="bottom" secondItem="PYN-gU-mRU" secondAttribute="bottom" id="Fcr-Zy-zDt"/>
+                            <constraint firstItem="Bch-8E-UJS" firstAttribute="width" secondItem="Pgd-Kj-bXN" secondAttribute="width" id="FzQ-lD-bUm"/>
+                            <constraint firstItem="yDu-pA-czd" firstAttribute="centerY" secondItem="Bch-8E-UJS" secondAttribute="centerY" constant="-9" id="G6T-FI-BU2"/>
+                            <constraint firstItem="Bch-8E-UJS" firstAttribute="height" secondItem="PYN-gU-mRU" secondAttribute="height" multiplier="0.888535" id="GQO-hi-ejR"/>
+                            <constraint firstItem="fqV-5V-5mA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="NCl-TK-NCC"/>
+                            <constraint firstItem="PYN-gU-mRU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NkO-A1-Bjp"/>
+                            <constraint firstItem="Bch-8E-UJS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RHa-uR-QS8"/>
+                            <constraint firstItem="Pgd-Kj-bXN" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="RwJ-ko-EZv"/>
+                            <constraint firstItem="Bch-8E-UJS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="TNx-BD-nzZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fqV-5V-5mA" secondAttribute="trailing" constant="16" id="Uee-2u-SAr"/>
+                            <constraint firstItem="Bch-8E-UJS" firstAttribute="height" secondItem="Pgd-Kj-bXN" secondAttribute="height" multiplier="1.10714" id="e6b-Vd-pxJ"/>
+                            <constraint firstItem="Bch-8E-UJS" firstAttribute="top" secondItem="Pgd-Kj-bXN" secondAttribute="bottom" id="fEL-JI-ktl"/>
+                            <constraint firstItem="yDu-pA-czd" firstAttribute="centerX" secondItem="Bch-8E-UJS" secondAttribute="centerX" id="gWL-Su-Uvx"/>
+                            <constraint firstItem="Pgd-Kj-bXN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kPa-WM-ai5"/>
+                            <constraint firstItem="N4P-lf-fge" firstAttribute="top" secondItem="yDu-pA-czd" secondAttribute="bottom" constant="5" id="nGm-JV-Ha3"/>
+                            <constraint firstItem="PYN-gU-mRU" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nxM-Ym-vAU"/>
+                            <constraint firstItem="Pgd-Kj-bXN" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="y1j-n6-Yw1"/>
+                            <constraint firstItem="N4P-lf-fge" firstAttribute="centerX" secondItem="yDu-pA-czd" secondAttribute="centerX" id="zYe-cO-xmW"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="50.769230769230766" y="374.64454976303318"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="top_banner_one.png" width="389" height="181"/>
+        <image name="top_banner_three.png" width="389" height="181"/>
+        <image name="top_banner_two.png" width="389" height="181"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

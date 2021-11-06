@@ -43,7 +43,12 @@ class TouristInformationViewController: UIViewController, UITableViewDataSource,
         self.nameTxtF.delegate = self
         self.ageTxtF.delegate = self
         
-        self.datePicker.minimumDate = NSDate.now
+        if #available(iOS 13.0, *) {
+            self.datePicker.minimumDate = NSDate.now
+        } else {
+            // Fallback on earlier versions
+            self.datePicker.minimumDate = Date()
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -76,6 +81,9 @@ class TouristInformationViewController: UIViewController, UITableViewDataSource,
 
     @IBAction func datePickerValueChanged(_ sender: Any) {
        print("datePickerValueChanged")
+        
+    }
+    @IBAction func onClickDoneOfDatePicker(_ sender: Any) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd"
         
@@ -248,6 +256,7 @@ class TouristInformationViewController: UIViewController, UITableViewDataSource,
             if(indexPath.section == 7)
             {
                 cell.cellTxtF.placeholder = "Enter Duration Of Stay"
+                cell.cellTxtF.keyboardType = .numberPad
                 self.durationOfStayTxtField = cell.cellTxtF
             }
            
@@ -258,8 +267,8 @@ class TouristInformationViewController: UIViewController, UITableViewDataSource,
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddTouristCell") as! AddTouristCell
             let dictObj = self.additionalTouristListArr[indexPath.row] as! NSDictionary
-            cell.addTouristNameLbl.text = "#\(indexPath.row+1)" + " " + "\(dictObj.value(forKey: "name") as! String)"
-            cell.addTouristAgeLbl.text = "Age: \(dictObj.value(forKey: "age") as! String)"
+            cell.addTouristNameLbl.text = "  #\(indexPath.row+1)" + " " + "\(dictObj.value(forKey: "name") as! String)"
+            cell.addTouristAgeLbl.text = "  Age: \(dictObj.value(forKey: "age") as! String)"
             cell.updateButton.tag = indexPath.row
             cell.updateButton.addTarget(self, action: #selector(onClickUpdateBtn(sender:)), for: .touchUpInside)
             cell.selectionStyle = .none
@@ -472,7 +481,7 @@ class TouristInformationViewController: UIViewController, UITableViewDataSource,
             self.showAlerOnTheView(message: "Please enter name.", title: AppConstants.shared.appName, actionButtonName: "Ok")
             return
         }
-        guard self.mobileTxtField?.text != "" && self.mobileTxtField!.text!.count ==  10 else {
+        guard self.mobileTxtField?.text != "" && (self.mobileTxtField?.text!.count)! >= 5 else {
             self.showAlerOnTheView(message: "Please enter valid mobile no.", title: AppConstants.shared.appName, actionButtonName: "Ok")
             return
         }

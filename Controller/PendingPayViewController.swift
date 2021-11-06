@@ -302,6 +302,7 @@ class PendingPayViewController: UIViewController,ViewControllerProtocol, UITable
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 1; // space b/w cells
     }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
         header.isUserInteractionEnabled = false

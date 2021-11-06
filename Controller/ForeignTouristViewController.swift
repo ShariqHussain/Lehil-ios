@@ -49,7 +49,12 @@ class ForeignTouristViewController: UIViewController, UITableViewDataSource,UITa
         self.tblView.dataSource = self
         self.tblView.tableFooterView = self.returnTableFooterView()
         
-        self.datePicker.minimumDate = NSDate.now
+        if #available(iOS 13.0, *) {
+            self.datePicker.minimumDate = NSDate.now
+        } else {
+            // Fallback on earlier versions
+            self.datePicker.minimumDate = Date()
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -65,6 +70,9 @@ class ForeignTouristViewController: UIViewController, UITableViewDataSource,UITa
     
     @IBAction func datePickerValueChanged(_ sender: Any) {
        print("datePickerValueChanged")
+       
+    }
+    @IBAction func onClickDoneOfDatePicker(_ sender: Any) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd"
         
@@ -126,11 +134,13 @@ class ForeignTouristViewController: UIViewController, UITableViewDataSource,UITa
             if(indexPath.section == 2)
             {
                 cell.cellTxtF.placeholder = "Enter Email Address"
+                cell.cellTxtF.keyboardType = .emailAddress
                 self.emailTxtF = cell.cellTxtF
             }
             if(indexPath.section == 6)
             {
                 cell.cellTxtF.placeholder = "Enter Passport Number"
+                cell.cellTxtF.autocapitalizationType = .allCharacters
                 self.passportNumberTxtF = cell.cellTxtF
             }
             if(indexPath.section == 8)
@@ -209,7 +219,6 @@ class ForeignTouristViewController: UIViewController, UITableViewDataSource,UITa
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
-       
             header.frame = CGRect(x: 10, y: 0, width: self.tblView.frame.size.width-20, height: 20)
             header.backgroundColor = .clear
             let lbl : UILabel = UILabel()
@@ -222,6 +231,8 @@ class ForeignTouristViewController: UIViewController, UITableViewDataSource,UITa
             
         return header
     }
+    
+  
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return 1
@@ -231,11 +242,40 @@ class ForeignTouristViewController: UIViewController, UITableViewDataSource,UITa
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-           return 2
+        if (section == 6)
+        {
+            return 30
+        }
+        else
+        {
+            return 2
+        }
        }
 
        func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-           return UIView()
+           
+           if(section == 6)
+           {
+               let header = UIView()
+                   header.frame = CGRect(x: 10, y: 0, width: self.tblView.frame.size.width-20, height: 30)
+                   header.backgroundColor = .clear
+                   let lbl : UILabel = UILabel()
+                   lbl.frame = CGRect(x: 10, y: 0, width: self.tblView.frame.size.width-20, height: 30)
+                   lbl.backgroundColor = .clear
+                   lbl.font = UIFont.systemFont(ofSize: 12)
+                   lbl.textColor = .red
+                    lbl.numberOfLines = 2
+                   lbl.text = "Permit cannot be issued to diplomatic passport holders. Kindly contact magistrate's office."
+                   header.addSubview(lbl)
+                   header.isUserInteractionEnabled = false
+                   
+               return header
+           }
+           else
+           {
+               return UIView()
+           }
+           
        }
     
     
@@ -464,7 +504,7 @@ class ForeignTouristViewController: UIViewController, UITableViewDataSource,UITa
             return
         }
 
-        guard self.mobileNumberTxtF?.text != "" && self.mobileNumberTxtF?.text!.count ==  10 else {
+        guard self.mobileNumberTxtF?.text != "" && (self.mobileNumberTxtF?.text!.count)! >= 5 else {
             self.showAlerOnTheView(message: "Please enter valid mobile no.", title: AppConstants.shared.appName, actionButtonName: "Ok")
             return
         }

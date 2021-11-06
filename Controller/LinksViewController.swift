@@ -10,13 +10,19 @@ import UIKit
 
 class LinksViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, TextViewCellDelegate, ViewControllerProtocol {
     func updateCellHeight() {
-        self.tblView.beginUpdates()
-        self.tblView.endUpdates()
+        
+        UIView.performWithoutAnimation {
+            self.tblView.beginUpdates()
+            self.tblView.endUpdates()
+        }
+       
     }
     
 
+    @IBOutlet weak var pressReleaseView: UIView!
     @IBOutlet weak var tblView: UITableView!
-    
+    var pressReleaseViewController : PressReleaseViewController?
+    @IBOutlet weak var pressReleaseBtn: UIButton!
     var nameTxtField : UITextField? = nil
     var emailTxtField: UITextField?
     var phoneNumberTxtFiled : UITextField?
@@ -41,6 +47,8 @@ class LinksViewController: UIViewController,UITableViewDelegate, UITableViewData
  
     
     @objc private func keyboardWillShow(notification: NSNotification) {
+        print("keyboardWillShow")
+        
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             print(keyboardSize.height)
             self.tblView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
@@ -80,6 +88,8 @@ class LinksViewController: UIViewController,UITableViewDelegate, UITableViewData
             cell.cultureBtn.addTarget(self, action: #selector(buttonLinkClicked(sender:)), for: .touchUpInside)
             cell.ICBtn1.addTarget(self, action: #selector(iCBtn1Clicked(sender:)), for: .touchUpInside)
             cell.ICBtn2.addTarget(self, action: #selector(iCBtn2Clicked(sender:)), for: .touchUpInside)
+            cell.pressReleaseBtn.addTarget(self, action: #selector(onClickPressBtn(sender:)), for: .touchUpInside)
+
 
 
 
@@ -121,16 +131,16 @@ class LinksViewController: UIViewController,UITableViewDelegate, UITableViewData
         }
         else
         {
-           // let cell = self.tblView.dequeueReusableCell(withIdentifier: "LinkTextViewCell") as! LinkTextViewCell
-            return UITableView.automaticDimension
-
+                return UITableView.automaticDimension
         }
     }
     
   // MARK: Actions
     
+   
     @objc func iCBtn1Clicked(sender : UIButton)
     {
+        
         let url = URL(string: "https://www.lahdclehpermit.in/uploads/covid%20advisory-converted.pdf")
         if #available(iOS 10.0, *) {
             UIApplication.shared.open(url!, options: [:], completionHandler: nil)
@@ -138,15 +148,53 @@ class LinksViewController: UIViewController,UITableViewDelegate, UITableViewData
             UIApplication.shared.openURL(url!)
         }
     }
+   
+    @objc func onClickPressBtn(sender : UIButton)
+    {
+        let storyBoard : UIStoryboard = UIStoryboard(name : "Main" , bundle : nil)
+        let pressViewControllerObj : PressReleaseViewController = storyBoard.instantiateViewController(withIdentifier: "PressReleaseViewController") as! PressReleaseViewController
+     //   pressViewControllerObj.btn.addTarget(self, action: #selector(buttonCli(sender:)), for: .touchUpInside)
+       // pressReleaseViewController.btn.addTarget(self, action: #selector(buttonCli(sender:)), for: .touchUpInside)
+       // self.pressReleaseView.isHidden = false
+       // self.tabBarController?.view.addSubview(self.pressReleaseView)
+        self.pressReleaseViewController = pressViewControllerObj
+        AppDelegate.getAppDelegate().window?.addSubview((self.pressReleaseViewController?.view)!)
+        
+    }
     
+    @IBAction func onClickCloseButtonPressRelease(_ sender: Any) {
+        
+        self.pressReleaseView.isHidden = true
+    }
+    
+    
+    @objc func buttonCli(sender : UIButton)
+    {
+        self.pressReleaseViewController?.removeFromParent()
+        
+    }
     @objc func iCBtn2Clicked(sender : UIButton)
     {
         let urlStr : String = "https://www.lahdclehpermit.in/"
-        guard let linksWebViewController = storyboard?.instantiateViewController(identifier: "LinkWebViewController", creator: { coder in
-            LinkWebViewController(urlStr: urlStr, coder: coder)
-        }) else {
-            fatalError("Unable to create an object")
-        }
+//        if #available(iOS 13.0, *) {
+//            guard let linksWebViewController = storyboard?.instantiateViewController(identifier: "LinkWebViewController", creator: { coder in
+//                LinkWebViewController(urlStr: urlStr, coder: coder)
+//            }) else {
+//                fatalError("Unable to create an object")
+//            }
+//            self.navigationController?.pushViewController(linksWebViewController, animated: true)
+//
+//        } else {
+//            // Fallback on earlier versions
+//
+//            let storyBoard : UIStoryboard = UIStoryboard(name : "Main" , bundle : nil)
+//            let linksWebViewController : LinkWebViewController = storyBoard.instantiateViewController(withIdentifier: "LinkWebViewController") as! LinkWebViewController
+//            linksWebViewController.urlStr = urlStr
+//            self.navigationController?.pushViewController(linksWebViewController, animated: true)
+//        }
+        let storyBoard : UIStoryboard = UIStoryboard(name : "Main" , bundle : nil)
+        let linksWebViewController : LinkWebViewController = storyBoard.instantiateViewController(withIdentifier: "LinkWebViewController") as! LinkWebViewController
+        linksWebViewController.urlStr = urlStr
         self.navigationController?.pushViewController(linksWebViewController, animated: true)
     }
     
@@ -175,13 +223,30 @@ class LinksViewController: UIViewController,UITableViewDelegate, UITableViewData
             break
         }
         
-        guard let linksWebViewController = storyboard?.instantiateViewController(identifier: "LinkWebViewController", creator: { coder in
-            LinkWebViewController(urlStr: urlStr, coder: coder)
-        }) else {
-            fatalError("Unable to create an object")
-        }
+//        if #available(iOS 13.0, *) {
+//            guard let linksWebViewController = storyboard?.instantiateViewController(identifier: "LinkWebViewController", creator: { coder in
+//                LinkWebViewController(urlStr: urlStr, coder: coder)
+//            }) else {
+//                fatalError("Unable to create an object")
+//            }
+//
+//            self.navigationController?.pushViewController(linksWebViewController, animated: true)
+//        } else {
+//            // Fallback on earlier versions
+//
+//            let storyBoard : UIStoryboard = UIStoryboard(name : "Main" , bundle : nil)
+//            let linksWebViewController : LinkWebViewController = storyBoard.instantiateViewController(withIdentifier: "LinkWebViewController") as! LinkWebViewController
+//            self.navigationController?.pushViewController(linksWebViewController, animated: true)
+//
+//            }
         
+        let storyBoard : UIStoryboard = UIStoryboard(name : "Main" , bundle : nil)
+        let linksWebViewController : LinkWebViewController = storyBoard.instantiateViewController(withIdentifier: "LinkWebViewController") as! LinkWebViewController
+        linksWebViewController.urlStr = urlStr
         self.navigationController?.pushViewController(linksWebViewController, animated: true)
+      
+        
+       
     }
     
     @objc func buttonClicked(sender: UIButton){
@@ -199,6 +264,9 @@ class LinksViewController: UIViewController,UITableViewDelegate, UITableViewData
         }
     }
     
+    @IBAction func onClickPressRelease(_ sender: Any) {
+        
+    }
     func hitSubmitApi() -> Void {
         if(self.isApiRunning)
         {
@@ -272,7 +340,7 @@ class LinksViewController: UIViewController,UITableViewDelegate, UITableViewData
             self.showAlerOnTheView(message: "Please enter valid email", title: AppConstants.shared.appName, actionButtonName: "Ok")
             return false
         }
-        guard (self.phoneNumberTxtFiled?.text) != nil && (self.phoneNumberTxtFiled?.text) != "" && self.phoneNumberTxtFiled?.text?.count == 10 else {
+        guard (self.phoneNumberTxtFiled?.text) != nil && (self.phoneNumberTxtFiled?.text) != "" && (self.phoneNumberTxtFiled?.text?.count)! >= 5 else {
             self.showAlerOnTheView(message: "Please enter valid mobile number", title: AppConstants.shared.appName, actionButtonName: "Ok")
             return false
         }

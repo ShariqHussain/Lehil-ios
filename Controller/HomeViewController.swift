@@ -20,6 +20,8 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    var advisoryViewController : AdvisoryViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,6 +32,15 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name : "Main" , bundle : nil)
+        let advisoryViewControllerObj : AdvisoryViewController = storyBoard.instantiateViewController(withIdentifier: "AdvisoryViewController") as! AdvisoryViewController
+        self.advisoryViewController = advisoryViewControllerObj
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            AppDelegate.getAppDelegate().window?.addSubview((self.advisoryViewController?.view)!)
+
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,13 +51,20 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func domesticTouristDidTap(_ sender: Any) {
     }
-    
+   
     @IBAction func ForeignTouristDidTap(_ sender: Any) {
         
-        guard let foreignTouristViewController = self.storyboard?.instantiateViewController(identifier: "ForeignTouristViewController") as? ForeignTouristViewController else {
-            fatalError("Failed to load ForeignTouristViewController from storyboard")
+        if #available(iOS 13.0, *) {
+            guard let foreignTouristViewController = self.storyboard?.instantiateViewController(identifier: "ForeignTouristViewController") as? ForeignTouristViewController else {
+                fatalError("Failed to load ForeignTouristViewController from storyboard")
+            }
+            self.navigationController?.pushViewController(foreignTouristViewController, animated: true)
+        } else {
+            // Fallback on earlier versions
+            let storyBoard : UIStoryboard = UIStoryboard(name : "Main" , bundle : nil)
+            let foreignTouristViewController : ForeignTouristViewController = storyBoard.instantiateViewController(withIdentifier: "ForeignTouristViewController") as! ForeignTouristViewController
+            self.navigationController?.pushViewController(foreignTouristViewController, animated: true)
         }
-        self.navigationController?.pushViewController(foreignTouristViewController, animated: true)
     }
     
     @IBAction func pendingPaymentDidTap(_ sender: Any) {
@@ -90,8 +108,8 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     }
     @objc private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            
             self.printPermitViewConstraint.constant = keyboardSize.height - self.tabBarController!.tabBar.frame.size.height
+            
             UIView.animate(withDuration: 1.0) {
                 self.view.layoutIfNeeded()
             }
