@@ -1,0 +1,12 @@
+//
+//  codemagic.yaml
+//  LehIL
+//
+//  Created by Shariq Hussain on 17/06/22.
+//
+
+workflows:
+  hello-world:
+    name: Lehil - ios workflow
+    scripts:
+        - echo "Hello World!"
